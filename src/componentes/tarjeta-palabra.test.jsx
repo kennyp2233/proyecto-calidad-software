@@ -192,35 +192,3 @@ test('La traducción de las palabras cambia según el idioma seleccionado en men
     expect(screen.getByText('pose')).toBeInTheDocument();
   }, { timeout: 3000 });
 });
-
-fixture`App Navegadores Compatibles`.page`http://localhost:3000`;
-test('Verificar compatibilidad con distintos navegadores', async (t) => {
-  // Verifica que la aplicación se cargue correctamente
-  await t.expect(Selector('h1').innerText).eql('SansGoogle');
-
-  // Verifica la visibilidad de algunos elementos importantes
-  await t.expect(Selector('.input-gruop').visible).ok();
-  await t.expect(Selector('.contenedor-tarjetas').visible).ok();
-
-  // Verifica la compatibilidad con Chrome
-  await t
-    .useRole(chromeUser)
-    .expect(Selector('h1').innerText)
-    .eql('SansGoogle')
-    .expect(Selector('.input-gruop').visible)
-    .ok()
-    .expect(Selector('.contenedor-tarjetas').visible)
-    .ok();
-
-  // Verifica la compatibilidad con Firefox
-  await t
-    .useRole(firefoxUser)
-    .expect(Selector('h1').innerText)
-    .eql('SansGoogle')
-    .expect(Selector('.input-gruop').visible)
-    .ok()
-    .expect(Selector('.contenedor-tarjetas').visible)
-    .ok();
-
-  // Verifica la compatibilidad con otros navegadores si es necesario
-});
